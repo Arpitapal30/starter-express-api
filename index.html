@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en" >
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/css/style.css">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.rtl.min.css" integrity="sha384-DOXMLfHhQkvFFp+rWTZwVlPVqdIhpDVYT9csOnHSgWQWPX0v5MCGtjCJbY6ERspU" crossorigin="anonymous">
+
+    <title>Cars Price Predictor</title>
+  </head>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+  <!-- Image and text -->
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="https://learn.excelr.com/login">
+    <img src="https://cdn.discordapp.com/attachments/1029411657090334753/1050042119684902963/image.png" width=40" height="40" class="d-inline-block align-top" alt="">
+  Excelr
+  </a>
+</nav>
+  <a class="navbar-brand" href="#">CAR Price Predictor</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="http://127.0.0.1:5000/">HOME <span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost:8888/view/P-168/Car24_report.html">DASHBOARD </a>
+
+
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://github.com/">GITHUB </a>
+      </li>
+
+    </ul>
+
+
+    <span class="navbar-text">
+
+    </span>
+
+
+  </div>
+</nav>
+
+
+
+  <style>
+    .text-red{
+         color:red
+    }
+     .select-bordered {
+    padding: 10px;
+    width: 200px;
+    font-size:16px;
+    border: 5px;
+    border-bottom: 3px solid teal;
+  }
+  .select-underline {
+    border-color: orangered;
+  }
+
+   .teal {border:3px teal;background-color:#D6EAF8 ;}
+
+
+ .ex
+ {
+  margin:auto;
+  width:90%;
+  padding:10px;
+  border:outset;
+ }
+ select
+ {
+  display:inline;
+  cursor:pointer;
+ }
+.ey
+ {
+  display:inline-block;
+  }
+
+   <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+</style>
+
+  <body class="white ">
+
+
+    <div class="container mt-100">
+      <div class="row">
+        <div class="card " style="width : 100%; height=100% ;margin-top:50px" >
+
+          <div class="card-header ; text-black">
+            <div class="col-12">
+              <h2 align="center">
+                GET BEST PRICE
+                <span>WITHIN FEW MINUTES</span>
+              </h2>
+            </div>
+          </div>
+
+          <div>
+
+            <form method="post" action="#"  accept-charset="utf-8">
+
+              <div class="ey form-group" style="text-align: center ; margin-top:100px">
+
+                  <label><b>Select Company:</b></label>
+                  <select class="select-bordered form-control select-underline" id="company" name="company" required="1">
+
+                  {%  for companies in company  %}
+
+                  <option value="{{companies}}">{{companies}}</option>
+                  {%  endfor %}
+                  </select>
+              </div>
+
+
+              <div class="ey form-group" style="text-align: center ; margin-top:20px ">
+                <label><b>Select Model:</b></label>
+                <select class="select-bordered form-control select-underline" id="car_model" name="car_model" required="1">
+
+                  {%  for car_models in car_model  %}
+
+                  <option value="{{car_models}}">{{car_models}}</option>
+                  {%  endfor %}
+                </select>
+              </div>
+
+
+              <div class="ey form-group" style="text-align: center ; margin-top:20px">
+                <label><b>Select Year of Purchase:</b></label>
+                <select class="select-bordered form-control select-underline" id="year" name="year" required="1">
+                  {%  for year in years  %}
+
+                  <option value="{{year}}">{{year}}</option>
+                  {%  endfor %}
+                </select>
+              </div>
+
+              <div class="ey form-group" style="text-align: center ; margin-top:20px">
+                <label><b>Select Fuel Type:</b></label>
+                <select class="select-bordered form-control select-underline" id="fuel_Type" name="fuel_Type" required="1">
+                  {%  for fuel in fuel_Type  %}
+
+                  <option value="{{fuel}}">{{fuel}}</option>
+                  {%  endfor %}
+                </select>
+              </div>
+
+              <div class="ey form-group" style="text-align: center ; margin-top:20px">
+                <label><b>Select Transmission:</b></label>
+                <select class="select-bordered form-control select-underline" id="transmission" name="transmission" required="1">
+                   {%  for trans in transmission  %}
+
+                  <option value="{{trans}}">{{trans}}</option>
+                  {%  endfor %}
+                </select>
+              </div>
+
+              <div class="ey form-group" style="text-align: center ; margin-top:20px">
+                <label><b>Select  Owner:</b></label>
+                <select class="select-bordered form-control select-underline" id="owner" name="owner" required="1">
+                   {%  for owner in owner  %}
+
+                  <option value="{{owner}}">{{owner}}</option>
+                  {%  endfor %}
+                </select>
+              </div>
+
+              <div class="ey form-group" style="text-align: center ; margin-top:20px">
+                <label><b>Select  Registration:</b></label>
+                <select class="select-bordered form-control select-underline" id="registration" name="registration" required="1">
+                   {%  for registration in registration  %}
+
+                  <option value="{{registration}}">{{registration}}</option>
+                  {%  endfor %}
+                </select>
+              </div>
+
+
+              <div class="ey form-group" style="text-align: center ; margin-top:20px">
+                <label><b>Select  State:</b></label>
+                <select class="select-bordered form-control select-underline" id="state" name="state" required="1">
+                   {%  for state in state  %}
+
+                  <option value="{{state}}">{{state}}</option>
+                  {%  endfor %}
+                </select>
+              </div>
+
+              <div class="ey form-group" style="text-align: center ; margin-top:20px">
+                <label><b>Select  City:</b></label>
+                <select class="select-bordered form-control select-underline" id="city" name="city" required="1">
+                   {%  for city in city  %}
+
+                  <option value="{{city}}">{{city}}</option>
+                  {%  endfor %}
+                </select>
+              </div>
+
+              <div class="ey form-group" style="text-align: center ; margin-top:20px">
+                <label><b>Select Seating Capacity:</b></label>
+                <select class="select-bordered form-control select-underline" id="seating_capacity" name="seating_capacity" required="1">
+                   {%  for seating_capacity in seating_capacity  %}
+
+                  <option value="{{seating_capacity}}">{{seating_capacity}}</option>
+                  {%  endfor %}
+                </select>
+              </div>
+
+              <div class="ey form-group" style="text-align: center ; margin-top:20px">
+                <label><b>Enter Kilometers Driven:</b></label>
+                <input class="form-control select-bordered " type="text" id="kilo_driven" name="kilo_driven" placeholder="Enter total Kilometer Driven">
+              </div>
+
+              <div class="ey form-group" style="text-align: center ; margin-top:20px">
+                <label><b>Enter Mileage:</b></label>
+                <input class="form-control select-bordered " type="text" id="mileage" name="mileage" placeholder="Enter Mileage">
+              </div>
+
+              <div class="ey form-group" style="text-align: center ; margin-top:20px">
+                <label><b>Enter Fuel Capacity:</b></label>
+                <input class="form-control select-bordered " type="text" id="fuel_capacity" name="fuel_capacity" placeholder="Enter Fuel Capacity">
+              </div>
+
+              <div class="col-5 form-group" style="text-align: center; margin-top:25px " >
+               <h1 align="center">
+                <button class="btn btn-primary form-control" onclick="send_data()" style="
+                           background-color: #808B96;
+                           color: rgb(0, 0, 0);
+                           border-color: 40px;
+                           border-color: rgb(0,0,0);
+                           height: 50px;
+                           width: 200px;
+                           font-size: 18px;
+                           font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+                           sans-serif; ">
+                     GET CAR PRICE
+                   </button>
+
+
+                  </h1>
+               </div>
+            </form>
+
+            <br>
+
+            <div class="row">
+              <div class="'ex  select-underline" style="text-align:center;margin-top:50px ; margin-bottom:50px">
+                <h3><span id="prediction"></span></h3>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container marketing">
+
+
+
+    <!------------------------------ Three columns of text below the carousel ------------>
+
+
+
+
+
+
+
+
+
+
+    <div class="row">
+      <div class="col-lg-4">
+        <img src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0Laqgpbun3NXcZlxFHNlc5TP775OQEmRJaQ&usqp=CAU" class="bd-placeholder-img rounded-circle" width="140" height="140" />
+        <h3>Easy Financing Options</h3>
+        <p>Become eligible for Zero Down Payment via EMIs of up to 72 months and instant loans.</p>
+
+        <p><a class="btn btn-secondary" href="http://localhost:8888/view/P-168/Car24_report.html" role="button">View details »</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFzBbYOMuL5_OsHpUND70-X-F6PrStd3nkzQ&usqp=CAU" class="bd-placeholder-img rounded-circle" width="140" height="140" />
+         <h3>12-Month Warranty</h3>
+        <p> Enjoy peace of mind with our 12-Month Warranty that is standard across all cars that we sell.</p>
+        <p><a class="btn btn-secondary" href="http://localhost:8888/view/P-168/Car24_report.html" role="button">View details »</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrYmt6RYFAeb8q1EYNHyq_TvFzwuER84V82Q&usqp=CAU" class="bd-placeholder-img rounded-circle" width="140" height="140" />
+        <h3>7-Day Return</h3>
+        <p>Love it, keep it. Changed your mind? Return it within 7 days for a full refund.</p>
+        <p><a class="btn btn-secondary" href="http://localhost:8888/view/P-168/Car24_report.html" role="button">View details »</a></p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+
+
+
+    <!-- START THE FEATURETTES ---------------------------------------------------------------------->
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Find the perfect car for you </h2>
+        <p class="lead">Are you thinking about getting a new car? It’s an exciting time to daydream, research and try drive a bargain. But with endless options at your fingertips, how will you know that you’re making the right decision or when a car is right for you?</p>
+      </div>
+      <div class="col-md-5">
+        <img src="data:image/jpeg;base64,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"
+
+             src class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+             alt="">
+
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">Test Drive at home </h2>
+        <p class="lead">Your comfort and safety will always be our top priority. We are committed to following all necessary precautions, as per WHO guidelines, for a contactless car buying experience.</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+
+
+              <img src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2SpgSgXmRkAkJ5PSE4kxvWeH8mmQyb2yFrg&usqp=CAU"
+              src class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+             alt="">
+
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Buy it your way.</h2>
+        <p class="lead"> You can pay in full or have it financed, the choice is yours.</p>
+      </div>
+      <div class="col-md-5">
+
+
+
+             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0EgXl_M_2-_WlPG0at_QfZyL4HinHfunx9Q&usqp=CAU"
+                 src class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+             alt="">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- ---------------------/END THE FEATURETTES ------------------------>
+
+  </div>
+
+ <!-- -------------------------------/footage---------------------------------------------- -->
+<div id="myCarousel" class="carousel slide pointer-event" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class="active" aria-current="true"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#17202A "></rect></svg>
+
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Example headline.</h1>
+            <p>Create a Free Account Today!.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#17202A "></rect></svg>
+
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Another example headline.</h1>
+            <p>Speak with one of our customer support executive.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Call us at 1800 0000 0000</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item active">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#17202A "></rect></svg>
+
+        <div class="container">
+          <div class="carousel-caption text-end">
+            <h1>One more for good measure.</h1>
+            <p>Find answers to frequently asked questions.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">View FAQs</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+ <!-- -----------------------/END THE Footage-------------------------------------------------- -->
+    <script>
+
+
+       function form_handler(event)
+    {
+      event.preventDefault();
+    }
+
+
+
+    function send_data()
+    {
+
+      document.querySelector('form').addEventListener('submit' , form_handler);
+
+      var fd = new FormData(document.querySelector('form'));
+
+
+      var xhr = new XMLHttpRequest();
+
+      xhr.open('POST', '/predict', true);
+
+
+      document.getElementById("prediction").innerHTML="Best Price.....!";
+
+
+      xhr.onreadystatechange = function()
+
+      {
+
+        if(xhr.readyState == XMLHttpRequest.DONE)
+        {
+          document.getElementById("prediction").innerHTML="Prediction: ₹" + xhr.responseText;
+        }
+      }
+
+      xhr.onload = function(){};
+      xhr.send(fd);
+
+    }
+
+
+
+    </script>
+
+
+
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+  </body>
+</html>
